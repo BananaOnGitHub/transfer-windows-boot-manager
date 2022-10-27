@@ -22,11 +22,21 @@ Have you ever run into the problem where the Windows Installer was stupid, and i
 1. Type in
 ```bcdboot C:\windows /s (your drive letter here):```
 <br>![](bcdbootcmd.png "cmd screenshot")<br>**Make sure you include the : at the end!**
-1. It should say ```Boot files successfully created.``` Shut down, unplug the drive that the old Windows Boot Manager was on, and power on to see if it works. If it does, *that's it!* You've created a new EFI boot partition on your main drive. You can now safely remove the other drive.
-<br><br>Finally, to unmount the drive from Windows:
+1. It should say ```Boot files successfully created.``` If it does, great! But we're not finished yet.
+1. Unmount the drive from Windows:
     1. Open `"Create and format hard disk partitions"` again
     1. Right click the EFI partition and click ```Change Drive Letter and Paths...```
     1. Remove the drive letter and click OK.
+<br>
+1. In Command Prompt, open diskpart by simply running `diskpart`
+1. Type in `list disk` and select your boot disk by then typing in `select disk=(disk number here)`
+1. Type in `list partition` and select the EFI partition (which should be 100-200MB, check in "Create and format hard disk partitions" for verification if needed) by typing in `select partition=(partition number here)`
+1. Pay attention to this one. Type in `SET ID=c12a7328-f81f-11d2-ba4b-00a0c93ec93b`
+    1. If "Create and format disk partitions" is open, then you should see the partition name disappear.
+1. Run `list partition` again to make sure your partition is now labeled as a "`System`" partition type.
+    1. If so, great!
+1. Finally, shut down, unplug the drive that the old Windows Boot Manager was on, and power on to see if it boots.  If it does, *that's it!* You've created a new EFI boot partition on your main drive. You can now safely remove the other drive.
+
 ### That's it! You're all done.
 
 <center>
