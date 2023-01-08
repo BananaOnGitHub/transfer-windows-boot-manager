@@ -27,7 +27,6 @@ Have you ever run into the problem where the Windows Installer was stupid, and i
     1. Open `"Create and format hard disk partitions"` again
     1. Right click the EFI partition and click ```Change Drive Letter and Paths...```
     1. Remove the drive letter and click OK.
-<br>
 1. In Command Prompt, open diskpart by simply running `diskpart`
 1. Type in `list disk` and select your boot disk by then typing in `select disk=(disk number here)`
 1. Type in `list partition` and select the EFI partition (which should be 100-200MB, check in "Create and format hard disk partitions" for verification if needed) by typing in `select partition=(partition number here)`
